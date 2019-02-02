@@ -1,0 +1,52 @@
+#! /usr/bin/env bash
+function check_if_installed {
+	req_install=( "git" "vim" "tmux" "yolo" ) 
+
+	for prog in "${req_install[@]}"
+	do
+		echo "Testing if $prog is installed."
+
+		if ! [ -x "$(command -v $prog )" ]; then
+			echo "ERORR: $prog is not installed." >&2
+			auto_install $prog
+			check_if_installed
+		fi
+	done
+}
+
+function auto_install {
+	program=$1
+	echo "Program $program is not installed, but if you want to install it right now with command sudo apt install $program press Y or if not installation will exit delete everything done, and you must install requiered program manually."
+	echo "If you want to install $program now press [Y/n]"
+	read install_answ
+	if [ -z $install_answ ] || [ $install_answ == "Y" ];  then
+		echo "Installation will start now!"
+		sudo apt install $program
+
+	else
+		#TODO: clear everything done to this point and close
+		echo "You choose to install $program manually!"
+		echo "Come back when you done it"
+		echo "This will exit now"
+		exit 1
+	fi
+}
+
+<< UPDATER
+echo "Do you wana update & upgrade apt?"
+echo "Do you [Y/n] ?"
+
+read inp_upt
+
+if [ -z $inp_upt ] || [ $inp_upt == "Y" ]; then
+	echo "Starting update!"
+	sudo apt update
+	echo "Starting upgrade!"
+	sudo apt upgrade
+else
+	echo "Apt will not be updated & upgraded!"
+fi
+UPDATER
+
+check_if_installed
+

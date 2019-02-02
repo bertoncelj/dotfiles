@@ -9,10 +9,7 @@
 "  for MS-DOS and Win32:  $VIM\_vimrc
 "	    for OpenVMS:  sys$login:.vimrc
 
-" When started as "evim", evim.vim will already have done these settings.
-"set runtimepath^=/home/tine/Documents/Library/vim_lib/ctrlp.vim
-
-"---------------------------------------------------------------------------
+"----------------------VUNDLE INSTALL PLUGIN---------------------------------
 "Installing plugings Vundle
 "Vundle: https://github.com/gmarik/Vundle.vim.git
 
@@ -26,26 +23,28 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 "plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
 Bundle 'Valloric/YouCompleteMe'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'christoomey/vim-tmux-navigator'
-" git repos on your local machine (i.e. when working on your own plugin)
-Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'majutsushi/tagbar'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
+call vundle#end()            
+filetype plugin indent on    
+
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -54,11 +53,36 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-"---------------------------------------------------------------------------
 
-"set number line and relative numbers
+
+"------------------------------BASIC CONFIG--------------------------------
 set number relativenumber
 set nu rnu 
+
+"Copy Past outside of VIM (websites, documents)
+set clipboard=unnamed
+
+"TABS
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set shiftround
+
+"Set mouse
+set mouse=a
+
+set autoindent
+set smartindent
+
+set smarttab
+"----------------------------KEY MAPPING----------------------------------
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-Enter> <C-w>=
+nnoremap <C-Left> <C-w><
+nnoremap <C-Right> <C-w>>
+nnoremap <C-Up> <C-w>+
+nnoremap <C-Down> <C-w>-
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -66,9 +90,18 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-"Copy Past outside of VIM (websites, documents)
-set clipboard=unnamed
+"Caps Lock as ESC
+au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 
+" F3打开目录树
+nmap <silent> <F3> :NERDTreeToggle<CR>
+
+" F4显示TagList
+nmap <silent> <F4> :TagbarToggle<CR>
+
+
+""""""""""""""""""""""""""""""PLUGIN CONFIG""""""""""""""""""""""""""
 "PowerLine
 let g:Powerline_symbols = 'fancy'
 
@@ -80,7 +113,14 @@ if v:progname =~? "evim"
   finish
 endif
 
-"PYTHON -------------------------------------------------
+" NERDTREE
+let NERDTreeIgnore=['\.pyc$', '\~$']
+" show nerdtree when starts up
+"autocmd vimenter * NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+
+"---------------PYTHON -----------------------------------
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
@@ -105,9 +145,6 @@ set encoding=utf-8
 "autocmd vimenter * NERDTree
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 "Pathogen setting for bundle automatic install
 execute pathogen#infect()
 syntax on
