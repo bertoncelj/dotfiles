@@ -2,99 +2,38 @@
 
 Portable dot configuration files to setup VIM IDE with tmux.
 
-## Package
+This project is extracted from [my dot files](https://github.com/axiaoxin/mac-dotfiles)
 
-These package is made by [Ocave-Forge](https://octave.sourceforge.io/index.php). On their site you can get some other [Packages](https://octave.sourceforge.io/packages.php). For calculation ODE equations we need symbolic library for ana
+## Install  
 
-### How to Install
+In your bash terminal run, in your dotfile:
 
+    ./install
 
-1.  The dependencies are Octave, Python, and SymPy.  Consult the SymPy
-    website for details on how to install SymPy.
+## VIM Version
 
-2.  Install SymPy by github repository
+VIM - Vi IMproved 8.1 (2018 May 18, compiled Oct 10 2018 15:24:01)
 
-Download and installation SymPy
---------
+### Plugins
 
-1. Get the latest version of SymPy from [GitHub](https://pypi.python.org/pypi/sympy/) To get git version do
-```
-$ git clone git://github.com/sympy/sympy.git
-```
-2. To install SymPy itself, then simply run:
-```
- sudo python setup.py install
-```
-If mpmath is not install or older version, try:
-```
-sudo apt-get install python-mpmath
-```
-For more info how to install SymPy goto [README](https://github.com/sympy/sympy/blob/master/README.rst) of SymPy.
+**use vundle manage plugins**：
 
-Installation symbolic package
--------
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-1.  Install the dependencies with (terminal)
-    `sudo apt-get install octave liboctave-dev python-sympy`.
+- [nerdtree](https://github.com/scrooloose/nerdtree) A tree explorer plugin for vim.
+- [ctrlp](https://github.com/kien/ctrlp.vim) Fuzzy file, buffer, mru, tag, etc finder.
+- [vim-surround](https://github.com/tpope/vim-surround) quoting/parenthesizing made simple
+- [indentLine](https://github.com/Yggdroot/indentLine) A vim plugin to display the indention levels with thin vertical lines
+....
+### Short Keys
 
-2.  Start Octave.
-
-3.  At Octave prompt type `pkg install -forge symbolic`.
-
-4.  At Octave prompt, type `pkg load symbolic`.
-
-5.  At Octave prompt, type `syms x`, then `f = (sin(x/2))^3`,
-    `diff(f, x)`, etc.
-
-### Possible problems with installation
-
-1. SymPy older version needs to be updated 
-```
-configure: error: SymPy version 0.7.5 or later is required
-checking for sort... /usr/bin/sort
-checking for GNU coreutils... yes
-checking for python... /usr/bin/python
-checking python module: sympy... yes
-checking for SymPy version... 0.7.4.1
-checking for gawk... gawk
-pkg: error running the configure script for symbolic.
-error: called from 'configure_make' in file /usr/share/octave/4.0.0/m/pkg/private/configure_make.m near line 79, column 9? 
-```
-The solution is to check if you have pip
-
-```
-sudo apt-cache policy python-pip
-```
-if it is installed. If not installed run:
-
-```
-sudo apt-get install python-pip
-```
-Now you can run pip to get the new sympy
-
-```
-pip install --user sympy
-```
-Finally back to octave to run
-```
-pkg install -forge symbolic
-```
-
-If it si somethink new just added soluton down below.
-
-## Usefull information
-
-Symbolic functions are expalined in [Octave-Forge](https://octave.sourceforge.io/symbolic/function/@sym/sym.html), presented with usefull exampels.
-
+- copy (all/selected) content: `Ctrl+c`
+- nerdtree toggle: `<F3>`
+- tagbar toggle: `<F4>`
+- change window: `<C-HJKL>`
+- find files: `<C-p>`
 
 ## Authors
 
 * **Tine Bertoncelj** - *Initial work* - [GitHub](https://github.com/bertoncelj)
-
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-
 
