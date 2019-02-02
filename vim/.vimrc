@@ -146,12 +146,12 @@ set encoding=utf-8
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "Pathogen setting for bundle automatic install
-execute pathogen#infect()
+"execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
 " Get the defaults that most users want.
-source $VIMRUNTIME/defaults.vim
+"source $VIMRUNTIME/defaults.vim
 
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
