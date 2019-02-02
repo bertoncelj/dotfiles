@@ -50,7 +50,10 @@ fi
 
 check_if_installed
 ./copy_files.sh
- git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+if [ ! -d $HOME/.vim/bundle/Vundle.vim ]; then
+    echo "Gettin Vundle from online repo!"
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+fi
 vim +PluginInstall +qall
 
 
