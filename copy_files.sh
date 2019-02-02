@@ -9,14 +9,16 @@ files="$vimrc_f $tmux_f"
 
 
 echo "HOME : $HOME"
-HOME="./test"
-echo "HOME : $HOME"
 for file in $files; do
 	name_f=$( basename "${file}" )
 	
 	echo $name_f
 	if [ -f $HOME/$name_f ]; then
-		bak_file_loc=$HOME/$name_f\.backup_$(date "+%Y%m%d%H%M%S")
+		if [ ! -d "$HOME/.backup_vim" ]; then
+			mkdir $HOME/.backup_vim
+		fi	
+			
+		bak_file_loc=$HOME/.backup_vim/$name_f\.backup_$(date "+%Y%m%d%H%M%S")
 		echo " Backing up previous dot files settings: from $name_f to $bak_file_loc"
 		mv $HOME/$name_f $bak_file_loc
 		cp $file $HOME/

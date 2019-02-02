@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 function check_if_installed {
-	req_install=( "git" "vim" "tmux" "yolo" ) 
+	req_install=( "git" "vim" "tmux" ) 
 
 	for prog in "${req_install[@]}"
 	do
@@ -32,7 +32,8 @@ function auto_install {
 	fi
 }
 
-<< UPDATER
+echo "VIM INSTALLER"
+
 echo "Do you wana update & upgrade apt?"
 echo "Do you [Y/n] ?"
 
@@ -46,7 +47,15 @@ if [ -z $inp_upt ] || [ $inp_upt == "Y" ]; then
 else
 	echo "Apt will not be updated & upgraded!"
 fi
-UPDATER
 
 check_if_installed
+./copy_files.sh
+
+vim +PluginInstall +qall
+
+
+
+
+
+
 
