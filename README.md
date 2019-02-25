@@ -24,6 +24,12 @@ VIM - Vi IMproved 8.1 (2018 May 18, compiled Oct 10 2018 15:24:01)
 - [ctrlp](https://github.com/kien/ctrlp.vim) Fuzzy file, buffer, mru, tag, etc finder.
 - [vim-surround](https://github.com/tpope/vim-surround) quoting/parenthesizing made simple
 - [indentLine](https://github.com/Yggdroot/indentLine) A vim plugin to display the indention levels with thin vertical lines
+- [ALE](https://github.com/w0rp/ale) ALE is a lugin for provinding linting (checking syntax and semantics)
+
+### Info
+ALE:
+<img src="img/example.gif?raw=true" alt="A linting example with the darkspectrum color scheme in GVim." title="A linting example with the darkspectrum color scheme in GVim.">
+
 ....
 ### Short Keys
 
