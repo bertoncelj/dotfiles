@@ -28,6 +28,7 @@ VIM - Vi IMproved 8.1 (2018 May 18, compiled Oct 10 2018 15:24:01)
 
 ### Info
 ALE:
+[!alt text](https://raw.githubusercontent.com/w0rp/ale/master/img/example.gif)
 <img src="img/example.gif?raw=true" alt="A linting example with the darkspectrum color scheme in GVim." title="A linting example with the darkspectrum color scheme in GVim.">
 
 ....
