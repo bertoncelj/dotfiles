@@ -6,17 +6,29 @@ This project is extracted from [my dot files](https://github.com/axiaoxin/mac-do
 
 ## Install  
 
-In your bash terminal run, in your dotfile:
+For Linux in your bash terminal run, in your dotfile:
 
     ./install
+
+Windows run same ./install in [ConEmu](https://conemu.github.io/) terminal for Bash terminal.
 
 ## VIM Version
 
 VIM - Vi IMproved 8.1 (2018 May 18, compiled Oct 10 2018 15:24:01)
 
-## VIM for Windows
+## VIM for Windows 10
 
-For reamaping CapsLock for ESC for now its manually download [AutoHotKey](https://www.autohotkey.com/). For AutoHotKey script past simple code:
+In Windows it runs in Bash terminal on [ConEmu](https://conemu.github.io/). Follow few steps to set it up:
+
+1.) Install Bash for Windows 10, follow [site](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/)
+
+2.) Install [ConEmu](https://conemu.github.io/)
+
+3.) In Bash run ./install
+
+Remap CapsLock with ESC:
+
+4.) For reamaping CapsLock for ESC for now its manually download [AutoHotKey](https://www.autohotkey.com/). For AutoHotKey script past simple code:
 
     ; AutoHotkey for VIM replace CapsLock with ESC
     ; make capslock do esc
@@ -25,7 +37,13 @@ For reamaping CapsLock for ESC for now its manually download [AutoHotKey](https:
 Save it as vim_remap_esc.ahk and run it with AutoHotKey. It will perma replace CapsLock with Esc. 
 More [details](http://ergoemacs.org/emacs/vi_remap_escape_key.html)
 
-### Plugins
+5.) Manually coment out in .vimrc:
+   
+    "Caps Lock as ESC
+    "au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+    "au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
+
+## Plugins
 
 **use vundle manage plugins**：
 
