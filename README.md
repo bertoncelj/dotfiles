@@ -14,6 +14,17 @@ In your bash terminal run, in your dotfile:
 
 VIM - Vi IMproved 8.1 (2018 May 18, compiled Oct 10 2018 15:24:01)
 
+## VIM for Windows
+
+For reamaping CapsLock for ESC for now its manually download [AutoHotKey](https://www.autohotkey.com/). For AutoHotKey script past simple code:
+
+    ; AutoHotkey for VIM replace CapsLock with ESC
+    ; make capslock do esc
+    Capslock::ESC
+
+Save it as vim_remap_esc.ahk and run it with AutoHotKey. It will perma replace CapsLock with Esc. 
+More [details](http://ergoemacs.org/emacs/vi_remap_escape_key.html)
+
 ### Plugins
 
 **use vundle manage plugins**：
