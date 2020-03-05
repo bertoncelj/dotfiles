@@ -39,6 +39,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'w0rp/ale'
+Plugin 'JuliaEditorSupport/julia-vim'
 " git repos on your local machine (i.e. when working on your own plugin)
 "Plugin 'file:///home/gmarik/path/to/plugin'
 
@@ -76,6 +77,14 @@ set autoindent
 set smartindent
 
 set smarttab
+
+"Return to the same line left off when close vim
+if has("autocmd")
+   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
+
+
 "----------------------------KEY MAPPING----------------------------------
 "split navigations
 nnoremap <C-J> <C-W><C-J>
