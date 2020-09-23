@@ -3,11 +3,8 @@
 " Maintainer: Tine Bertoncelj	<tine.bertoncelj@gmail.com>
 " Last change:	2019 Jan 25
 
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
+
+
 
 "----------------------VUNDLE INSTALL PLUGIN---------------------------------
 set nocompatible              " be iMproved, required
@@ -20,13 +17,19 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'tmhedberg/SimpylFold'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'powerline/powerline'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'majutsushi/tagbar'
+"markdown open in web browser
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' }
 "git
 Plugin 'tpope/vim-fugitive'
+"--------NAVIGATION-------
+Plugin 'preservim/nerdtree'
 "multi nerd trees in seperate tabs
 Plugin 'jistr/vim-nerdtree-tabs'
+"git in nerd tree
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 "fuzzy search
 Plugin 'kien/ctrlp.vim'
 "----------------THEME------------"
@@ -101,44 +104,74 @@ nnoremap <C-H> <C-W><C-H>
 au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 
-" F3打开目录树
-nmap <silent> <F3> :NERDTreeToggle<CR>
 
-" F4显示TagList
+"F2 
+nmap <silent> <F2> :terminal Bash<CR> 
+
+"F3 -- F5 NERDTree open project folder
+nmap <silent> <F3> :NERDTreeToggle<CR> C:\TFS\IE-MFP
+nmap <silent> <F5> :NERDTreeToggle<CR> D:\tine
+
+"F4 TagList
 nmap <silent> <F4> :TagbarToggle<CR>
 
 
 """"""""""""""""""""""""""""""PLUGIN CONFIG""""""""""""""""""""""""""
-"PowerLine
+"::::::::::::::vim-easy-align:::::::::::::::::::
+" DEMO with examples on:
+" https://github.com/junegunn/vim-easy-align
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+"::::::::::::::::::::::: NERDTree:::::::::::::::::::::::::::
+let NERDTreeIgnore=['\.pyc$', '\~$']
+
+"show nerdtree when starts up
+autocmd vimenter * NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+"saved sessions like mksession
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTree | endif
+
+"NERDTree automaticly open when vim start on opening directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+
+"Close NERDTree when only it is left open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+":::::::::::::::::::::::::::::TMUX::::::::::::::::::::::::::::
+"Vim-slime adding target to tmux
+let g:slime_target = "tmux"
+
+"::::::::::::::::::::::::::::PowerLine::::::::::::::::::::::::
 let g:Powerline_symbols = 'fancy'
 
 
-"COLORSCHEME BACKGROUND
+" :::::::::::::::::::::::::::EASY-FOLD:::::::::::::::::::::
+" Enable folding with the spacebar
+nnoremap <space> za
+
+""""""""""""""""""""""COLORSCHEME BACKGROUND""""""""""""""""""""""
 set background=light
 colorscheme PaperColor
 if v:progname =~? "evim"
   finish
 endif
 
-" NERDTREE
-let NERDTreeIgnore=['\.pyc$', '\~$']
-" show nerdtree when starts up
-"autocmd vimenter * NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 
-"Vim-slime adding target to tmux
-let g:slime_target = "tmux"
-
-
-
-"---------------PYTHON -----------------------------------
+""""""""""""""""""""""""""""""LANGUAGE CONFIG"""""""""""""""""""""""""""""""
+"---------------------------------PYTHON -----------------------------------
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
 
-" Enable folding with the spacebar
-nnoremap <space> za
 
 au BufNewFile,BufRead *.py
     \ set tabstop=4
@@ -155,11 +188,7 @@ set encoding=utf-8
 let g:python_highlight_all = 1
 
 "------------------------------------------------------
-"vim plugging NERDtree STARTUP
-"autocmd vimenter * NERDTree
-"autocmd vimenter * NERDTree
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 "Pathogen setting for bundle automatic install
 "execute pathogen#infect()
 syntax on
