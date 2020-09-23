@@ -2,6 +2,7 @@
 #VIM
 *.swp
 *~
+*.swo
 
 # Folder view configuration files
 .DS_Store

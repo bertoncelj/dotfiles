@@ -10,9 +10,6 @@
 "	    for OpenVMS:  sys$login:.vimrc
 
 "----------------------VUNDLE INSTALL PLUGIN---------------------------------
-"Installing plugings Vundle
-"Vundle: https://github.com/gmarik/Vundle.vim.git
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -22,32 +19,32 @@ set rtp+=~/.vim/bundle/Vundle.vim
 " Keep Plugin commands between vundle#begin/end.
 call vundle#begin()
 
-"plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'tmhedberg/SimpylFold'
-Plugin 'vim-scripts/indentpython.vim'
-Bundle 'Valloric/YouCompleteMe'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
-Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'majutsushi/tagbar'
-Plugin 'terryma/vim-multiple-cursors'
+"git
+Plugin 'tpope/vim-fugitive'
+"multi nerd trees in seperate tabs
+Plugin 'jistr/vim-nerdtree-tabs'
+"fuzzy search
 Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'w0rp/ale'
-Plugin 'JuliaEditorSupport/julia-vim'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
+"----------------THEME------------"
+Plugin 'NLKNguyen/papercolor-theme'
+" for enhancd syntax
+Plugin 'vim-python/python-syntax'
+Plugin 'NLKNguyen/c-syntax.vim' 
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'pboettch/vim-cmake-syntax'
+Plugin 'pprovost/vim-ps1'
+"------LANGUAGE----------
+"python
+Plugin 'vim-scripts/indentpython.vim'
+Bundle 'Valloric/YouCompleteMe'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            
-filetype plugin indent on    
-
-" Brief help
+call vundle#end()            " required
+filetype plugin indent on  
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
@@ -130,6 +127,11 @@ let NERDTreeIgnore=['\.pyc$', '\~$']
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 
+"Vim-slime adding target to tmux
+let g:slime_target = "tmux"
+
+
+
 "---------------PYTHON -----------------------------------
 " Enable folding
 set foldmethod=indent
@@ -148,6 +150,9 @@ au BufNewFile,BufRead *.py
     \ set fileformat=unix
 
 set encoding=utf-8
+
+" richer highlighting python from Plugin: python-syntax
+let g:python_highlight_all = 1
 
 "------------------------------------------------------
 "vim plugging NERDtree STARTUP
@@ -204,3 +209,6 @@ endif " has("autocmd")
 if has('syntax') && has('eval')
   packadd! matchit
 endif
+
+
+
