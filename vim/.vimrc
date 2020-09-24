@@ -12,16 +12,13 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-
 " Keep Plugin commands between vundle#begin/end.
 call vundle#begin()
 
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'tmhedberg/SimpylFold'
-Plugin 'powerline/powerline'
-Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'itchyny/lightline.vim'
 Plugin 'majutsushi/tagbar'
-"markdown open in web browser
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' }
 "git
 Plugin 'tpope/vim-fugitive'
 "--------NAVIGATION-------
@@ -34,6 +31,8 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'kien/ctrlp.vim'
 "----------------THEME------------"
 Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'morhetz/gruvbox' "background
+Plugin 'joshdick/onedark.vim'
 " for enhancd syntax
 Plugin 'vim-python/python-syntax'
 Plugin 'NLKNguyen/c-syntax.vim' 
@@ -55,6 +54,15 @@ filetype plugin indent on
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+call plug#begin('~/.vim/plugged')
+
+"plugin on GitHub repo
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' }
+
+call plug#end()            
+filetype plugin indent on    
 
 
 "------------------------------BASIC CONFIG--------------------------------
@@ -100,12 +108,14 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-"Caps Lock as ESC
+"Caps Lock as ESC (Linux only)
 au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 
+"exit INSERT terminal mode
+tnoremap <Esc> <C-\><C-n>
 
-"F2 
+"F2 terminal bash 
 nmap <silent> <F2> :terminal Bash<CR> 
 
 "F3 -- F5 NERDTree open project folder
@@ -158,8 +168,16 @@ let g:Powerline_symbols = 'fancy'
 nnoremap <space> za
 
 """"""""""""""""""""""COLORSCHEME BACKGROUND""""""""""""""""""""""
-set background=light
-colorscheme PaperColor
+"set background=light
+
+colorscheme gruvbox
+
+let g:airline_theme=onedark
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+set termguicolors
+
 if v:progname =~? "evim"
   finish
 endif
@@ -238,6 +256,5 @@ endif " has("autocmd")
 if has('syntax') && has('eval')
   packadd! matchit
 endif
-
 
 
