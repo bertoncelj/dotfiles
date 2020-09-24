@@ -2,21 +2,37 @@
 
 Portable dot configuration files to setup VIM IDE with tmux.
 
-This project is extracted from [my dot files](https://github.com/axiaoxin/mac-dotfiles)
+### Prerequisites VIM Version
 
-## Install  
+* VIM - Vi IMproved 8.1 (2018 May 18, compiled Oct 10 2018 15:24:01)
 
-For Linux in your bash terminal run, in your dotfile:
+* NeoVim must have 24bit colors
+
+* Terminal where Vim is running, must support 24 bit colors
+
+
+### Install  
+
+ **Linux:** Bash terminal
+
+  For Linux in your bash terminal run, in your dotfile:
 
     ./install
+    
+It will copy *.vimrc* into *$HOME* directory
 
-Windows run same ./install in [ConEmu](https://conemu.github.io/) terminal for Bash terminal.
+  **Windows**: Best option to run Vim on is [NeoVim](https://neovim.io/)
 
-## VIM Version
+  * **NeoVim** Copy content from [git repo](https://github.com/bertoncelj/dotfiles) `dotfiles/vim/.vimrc` into windows file `init.vim`
 
-VIM - Vi IMproved 8.1 (2018 May 18, compiled Oct 10 2018 15:24:01)
 
-## VIM for Windows 10
+        C:\Users\T_Bertoncelj\AppData\Local\nvim\init.vim
+
+
+  * **ConEmu** [ConEmu](https://conemu.github.io/) Copy content from [git repo](https://github.com/bertoncelj/dotfiles) `dotfiles/vim/.vimrc` into windows file `.vimrc` which is in LocalUser directory 
+
+
+##### VIM for Windows 10 on ConEmu (obsolete, rather use [NeoVim](https://neovim.io/))
 
 In Windows it runs in Bash terminal on [ConEmu](https://conemu.github.io/). Follow few steps to set it up:
 
@@ -42,18 +58,70 @@ More [details](http://ergoemacs.org/emacs/vi_remap_escape_key.html)
     "Caps Lock as ESC
     "au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
     "au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
+## Key Mapping
+
+#### Short-Cuts
+
+`Ctrl+c` copy (all/selected) content 
+
+`<F2>` Terminal Bash
+
+`<F3>` nerdtree toggle (file explorer) 
+
+`<F4>` tagbar toggle (functions navigator)
+
+`<C-HJKL>` change window 
+
+`<C-p>` find files 
+
+`Ctrl` + `hjkl` walk around Vim splits
+
+#### Keys switchup
+
+`CapsLock` == `ESC`
 
 ## Plugins
 
-**use vundle manage plugins**：
+use [**Vundle**](https://github.com/VundleVim/Vundle) to manage plugin：
 
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+In vim use `:PluginInstall` to add new plugin, `:PluginClean` delete unused plugin, `PluginList` show all used plugins.
 
-- [nerdtree](https://github.com/scrooloose/nerdtree) A tree explorer plugin for vim.
-- [ctrlp](https://github.com/kien/ctrlp.vim) Fuzzy file, buffer, mru, tag, etc finder.
-- [vim-surround](https://github.com/tpope/vim-surround) quoting/parenthesizing made simple
-- [indentLine](https://github.com/Yggdroot/indentLine) A vim plugin to display the indention levels with thin vertical lines
-- [ALE](https://github.com/w0rp/ale) ALE is a lugin for provinding linting (checking syntax and semantics)
+[Markdown](https://github.com/iamcco/markdown-preview.vim) For editing MarkDown files `.md`. Write `:MarkDownPreview` when you have `.md` file open in Vim
+
+[SimpyFold](https://github.com/tmhedberg/SimpylFold) Use `space` to close functions down
+
+[lightline](https://github.com/itchyny/lightline.vim)  Fancy NORMAL, INSERT, VISUAL statusline
+
+[tagbar](https://github.com/preservim/tagbar) Show sidebar funcitons in file
+
+[nerdtree](https://github.com/scrooloose/nerdtree) A tree explorer plugin for vim.
+ 
+[ctrlp](https://github.com/kien/ctrlp.vim) Fuzzy file, buffer, mru, tag, etc finder.
+
+[vim-surround](https://github.com/tpope/vim-surround) quoting/parenthesizing made simple
+
+[indentLine](https://github.com/Yggdroot/indentLine) A vim plugin to display the indention levels with thin vertical lines
+
+[ALE](https://github.com/w0rp/ale) ALE is a lugin for provinding linting (checking syntax and semantics)
+
+### Color background fond style
+
++ Change in .vimrc or in Vim:
+
+  `colorscheme #name` options are:
+
+   `gruvbox`
+`onedark`
+`PaperColor`
+
++ Set light or dark theme: 
+
+  `set backgroud=light`
+ or `set backgroud=dark`
+
++ For enhanced syntax style for different languagles `C` `python` `markdown` `cmake` use
+
+    `syntax on`
 
 ### Info
 ALE:
@@ -61,15 +129,7 @@ ALE:
 <img src="img/example.gif?raw=true" alt="A linting example with the darkspectrum color scheme in GVim." title="A linting example with the darkspectrum color scheme in GVim.">
 
 ....
-### Short Keys
-
-- copy (all/selected) content: `Ctrl+c`
-- nerdtree toggle: `<F3>`
-- tagbar toggle: `<F4>`
-- change window: `<C-HJKL>`
-- find files: `<C-p>`
 
 ## Authors
-
 * **Tine Bertoncelj** - *Initial work* - [GitHub](https://github.com/bertoncelj)
 
