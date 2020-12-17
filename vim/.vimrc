@@ -1,12 +1,9 @@
 " Vim configuration file 
 
 " Maintainer: Tine Bertoncelj	<tine.bertoncelj@gmail.com>
-" Last change:	2019 Jan 25
+" Last change:	2020 Dec 17
 
-
-
-
-"----------------------VUNDLE INSTALL PLUGIN---------------------------------
+" ---------- VUNDLE INSTALL PLUGIN ----------
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -21,7 +18,9 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'majutsushi/tagbar'
 "git
 Plugin 'tpope/vim-fugitive'
-"--------NAVIGATION-------
+Plugin 'puremourning/vimspector'
+
+" ---------- NAVIGATION ---------- 
 Plugin 'preservim/nerdtree'
 "multi nerd trees in seperate tabs
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -29,7 +28,12 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 "fuzzy search
 Plugin 'kien/ctrlp.vim'
-"----------------THEME------------"
+"hot-key commenting code
+Plugin 'tpope/vim-commentary'
+" Doxygen commenting 
+Plugin 'vim-scripts/DoxygenToolkit.vim'
+
+"---------- THEME ----------
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'morhetz/gruvbox' "background
 Plugin 'joshdick/onedark.vim'
@@ -40,7 +44,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'pboettch/vim-cmake-syntax'
 Plugin 'pprovost/vim-ps1'
-"------LANGUAGE----------
+"---------- LANGUAGE ----------
 "python
 Plugin 'vim-scripts/indentpython.vim'
 Bundle 'Valloric/YouCompleteMe'
@@ -182,8 +186,6 @@ if v:progname =~? "evim"
   finish
 endif
 
-
-
 """"""""""""""""""""""""""""""LANGUAGE CONFIG"""""""""""""""""""""""""""""""
 "---------------------------------PYTHON -----------------------------------
 " Enable folding
@@ -256,5 +258,3 @@ endif " has("autocmd")
 if has('syntax') && has('eval')
   packadd! matchit
 endif
-
-

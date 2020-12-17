@@ -1,3 +1,19 @@
+# pisi o temu
+
+#GIT
+
+"git
+Plugin 'tpope/vim-fugitive'
+Plugin 'puremourning/vimspector'
+
+"hot-key commenting code
+Plugin 'tpope/vim-commentary'
+" Doxygen commenting 
+Plugin 'vim-scripts/DoxygenToolkit.vim'
+
+............................
+
+
 # VIM & TMUX IDE setup
 
 Portable dot configuration files to setup VIM IDE with tmux.
@@ -78,7 +94,9 @@ More [details](http://ergoemacs.org/emacs/vi_remap_escape_key.html)
 
 #### Keys switchup
 
-`CapsLock` == `ESC`
+supported only on Linux Vim:
+
+    `CapsLock` == `ESC`
 
 ## Plugins
 
@@ -86,23 +104,33 @@ use [**Vundle**](https://github.com/VundleVim/Vundle) to manage plugin：
 
 In vim use `:PluginInstall` to add new plugin, `:PluginClean` delete unused plugin, `PluginList` show all used plugins.
 
-[Markdown](https://github.com/iamcco/markdown-preview.vim) For editing MarkDown files `.md`. Write `:MarkDownPreview` when you have `.md` file open in Vim
-
 [SimpyFold](https://github.com/tmhedberg/SimpylFold) Use `space` to close functions down
 
 [lightline](https://github.com/itchyny/lightline.vim)  Fancy NORMAL, INSERT, VISUAL statusline
 
-[tagbar](https://github.com/preservim/tagbar) Show sidebar funcitons in file
+[Markdown](https://github.com/iamcco/markdown-preview.vim) For editing MarkDown files `.md`. Write `:MarkDownPreview` when you have `.md` file open in Vim
 
-[nerdtree](https://github.com/scrooloose/nerdtree) A tree explorer plugin for vim.
- 
-[ctrlp](https://github.com/kien/ctrlp.vim) Fuzzy file, buffer, mru, tag, etc finder.
+[tagbar](https://github.com/preservim/tagbar) Show sidebar funcitons in file, press `<F4>`
 
-[vim-surround](https://github.com/tpope/vim-surround) quoting/parenthesizing made simple
+[vim-fugitive](https://github.com/tpope/vim-fugitive) Use git inside vim, type `:Git status`
 
-[indentLine](https://github.com/Yggdroot/indentLine) A vim plugin to display the indention levels with thin vertical lines
+[Debbuger](https://github.com/puremourning/vimspector) TODO: configure settings, maybe useful
 
-[ALE](https://github.com/w0rp/ale) ALE is a lugin for provinding linting (checking syntax and semantics)
+[Doxygen comments](https://github.com/vim-scripts/DoxygenToolkit.vim) Create comments in doxygen style, go to function and press `:Dot`
+
+##### Navigation
+
+[nerdtree](https://github.com/scrooloose/nerdtree) A tree explorer plugin for vim, press `<F3>`
+
+Plugin 'jistr/vim-nerdtree-tabs'
+[vim_nerdtree-tabs](https://github.com/jistr/vim-nerdtree-tabs) TODO: figure out what does it do??
+
+[nerdtree-git-plugin](https://github.com/Xuyuanp/nerdtree-git-plugin) TODO: figure out what does it do??
+
+[ctrlp](https://github.com/kien/ctrlp.vim) Fuzzy file, buffer, mru, tag, etc finder, type `:Ctrlp`
+
+
+TODO add: under LANGUAGE
 
 ### Color background fond style
 
