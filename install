@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 function check_if_installed {
-	req_install=( "git" "vim" "tmux" "pax" ) 
+	req_install=( "git" "vim" "tmux" ) 
 
 	for prog in "${req_install[@]}"
 	do
