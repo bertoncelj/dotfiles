@@ -19,6 +19,10 @@ Plugin 'majutsushi/tagbar'
 "git
 Plugin 'tpope/vim-fugitive'
 Plugin 'puremourning/vimspector'
+" Logging page too choose source
+Plugin 'mhinz/vim-startify'
+" Doxygen commenting 
+Plugin 'vim-scripts/DoxygenToolkit.vim'
 
 " ---------- NAVIGATION ---------- 
 Plugin 'preservim/nerdtree'
@@ -30,13 +34,12 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'kien/ctrlp.vim'
 "hot-key commenting code
 Plugin 'tpope/vim-commentary'
-" Doxygen commenting 
-Plugin 'vim-scripts/DoxygenToolkit.vim'
 
 "---------- THEME ----------
 Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'morhetz/gruvbox' "background
 Plugin 'joshdick/onedark.vim'
+" Currenty used
+Plugin 'morhetz/gruvbox'
 " for enhancd syntax
 Plugin 'vim-python/python-syntax'
 Plugin 'NLKNguyen/c-syntax.vim' 
@@ -90,7 +93,7 @@ set smartindent
 
 set smarttab
 
-"Return to the same line left off when close vim
+" Return to the same line left off when close vim
 if has("autocmd")
    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
@@ -98,7 +101,7 @@ endif
 
 
 "----------------------------KEY MAPPING----------------------------------
-"split navigations
+" Split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-Enter> <C-w>=
 nnoremap <C-Left> <C-w><
@@ -106,27 +109,29 @@ nnoremap <C-Right> <C-w>>
 nnoremap <C-Up> <C-w>+
 nnoremap <C-Down> <C-w>-
 
-"split navigations
+" Split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-"Caps Lock as ESC (Linux only)
-au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
+" Caps Lock as ESC (Linux only)
+if has('unix')
+    au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+    au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
+endif
 
-"exit INSERT terminal mode
+" Exit INSERT terminal mode
 tnoremap <Esc> <C-\><C-n>
 
-"F2 terminal bash 
+" F2 terminal bash 
 nmap <silent> <F2> :terminal Bash<CR> 
 
-"F3 -- F5 NERDTree open project folder
-nmap <silent> <F3> :NERDTreeToggle<CR> C:\TFS\IE-MFP
-nmap <silent> <F5> :NERDTreeToggle<CR> D:\tine
+" F3 -- F5 NERDTree open project folder
+nmap <silent> <F3> :NERDTreeTabsToggle<CR>
+nmap <silent> <F5> :NERDTreeTabsFind<CR> 
 
-"F4 TagList
+" F4 TagList
 nmap <silent> <F4> :TagbarToggle<CR>
 
 
@@ -144,23 +149,10 @@ nmap ga <Plug>(EasyAlign)
 "::::::::::::::::::::::: NERDTree:::::::::::::::::::::::::::
 let NERDTreeIgnore=['\.pyc$', '\~$']
 
-"show nerdtree when starts up
-autocmd vimenter * NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-"saved sessions like mksession
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTree | endif
-
-"NERDTree automaticly open when vim start on opening directory
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-
-"Close NERDTree when only it is left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Do NOT use it, better to use POWER
 
 ":::::::::::::::::::::::::::::TMUX::::::::::::::::::::::::::::
-"Vim-slime adding target to tmux
+" Vim-slime adding target to tmux
 let g:slime_target = "tmux"
 
 "::::::::::::::::::::::::::::PowerLine::::::::::::::::::::::::
@@ -171,12 +163,35 @@ let g:Powerline_symbols = 'fancy'
 " Enable folding with the spacebar
 nnoremap <space> za
 
+" :::::::::::::::::::::::::::STARTUP WINDOW::::::::::::::::::::::::::::
+
+function! s:gitModified()
+    let files = systemlist('git ls-files -m 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+" Same as above, but show untracked files, honouring .gitignore
+function! s:gitUntracked()
+    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+let g:startify_lists = [
+        \ { 'type': 'files',     'header': ['   MRU']            },
+        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+        \ { 'type': 'sessions',  'header': ['   Sessions']       },
+        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+        \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+        \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
+        \ { 'type': 'commands',  'header': ['   Commands']       },
+        \ ]
+
 """"""""""""""""""""""COLORSCHEME BACKGROUND""""""""""""""""""""""
-"set background=light
+" set background=light
 
+" Choose one:
 colorscheme gruvbox
-
-let g:airline_theme=onedark
+" colorscheme darkone
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 

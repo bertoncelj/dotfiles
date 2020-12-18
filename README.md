@@ -1,19 +1,3 @@
-# pisi o temu
-
-#GIT
-
-"git
-Plugin 'tpope/vim-fugitive'
-Plugin 'puremourning/vimspector'
-
-"hot-key commenting code
-Plugin 'tpope/vim-commentary'
-" Doxygen commenting 
-Plugin 'vim-scripts/DoxygenToolkit.vim'
-
-............................
-
-
 # VIM & TMUX IDE setup
 
 Portable dot configuration files to setup VIM IDE with tmux.
@@ -74,6 +58,20 @@ More [details](http://ergoemacs.org/emacs/vi_remap_escape_key.html)
     "Caps Lock as ESC
     "au VimEnter * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
     "au VimLeave * !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
+## Quick Start
+
+Run command `vim` or `nvim`
+
+First startify opens, choose project or session `[1..9]` or empty `[e]`
+
+Use Vim 
+
+Save session `:mksession [name]` and save for startify `:SSession`
+
+Revoke session saved:  `:sourece [name]`
+
+`:SClose` goes to start menu
+
 ## Key Mapping
 
 #### Short-Cuts
@@ -82,9 +80,11 @@ More [details](http://ergoemacs.org/emacs/vi_remap_escape_key.html)
 
 `<F2>` Terminal Bash
 
-`<F3>` nerdtree toggle (file explorer) 
+`<F3>` nerdtreetabs toggle (file explorer) 
 
 `<F4>` tagbar toggle (functions navigator)
+
+`<F5>` nerdtreetabs find file in directory 
 
 `<C-HJKL>` change window 
 
@@ -104,6 +104,8 @@ use [**Vundle**](https://github.com/VundleVim/Vundle) to manage plugin：
 
 In vim use `:PluginInstall` to add new plugin, `:PluginClean` delete unused plugin, `PluginList` show all used plugins.
 
+##### Editor
+
 [SimpyFold](https://github.com/tmhedberg/SimpylFold) Use `space` to close functions down
 
 [lightline](https://github.com/itchyny/lightline.vim)  Fancy NORMAL, INSERT, VISUAL statusline
@@ -114,23 +116,27 @@ In vim use `:PluginInstall` to add new plugin, `:PluginClean` delete unused plug
 
 [vim-fugitive](https://github.com/tpope/vim-fugitive) Use git inside vim, type `:Git status`
 
+[startify](https://github.com/mhinz/vim-fugitive) Start window
+
 [Debbuger](https://github.com/puremourning/vimspector) TODO: configure settings, maybe useful
 
 [Doxygen comments](https://github.com/vim-scripts/DoxygenToolkit.vim) Create comments in doxygen style, go to function and press `:Dot`
 
 ##### Navigation
 
-[nerdtree](https://github.com/scrooloose/nerdtree) A tree explorer plugin for vim, press `<F3>`
+[nerdtree](https://github.com/scrooloose/nerdtree) A tree explorer, try NOT to used, insted use `:NERDTreeTabsOpen`
 
-Plugin 'jistr/vim-nerdtree-tabs'
-[vim_nerdtree-tabs](https://github.com/jistr/vim-nerdtree-tabs) TODO: figure out what does it do??
+[vim_nerdtree-tabs](https://github.com/jistr/vim-nerdtree-tabs) Same tree explorer for every tab, call with `<F3>` and find path in exploerer press `<F5>` 
 
-[nerdtree-git-plugin](https://github.com/Xuyuanp/nerdtree-git-plugin) TODO: figure out what does it do??
+[nerdtree-git-plugin](https://github.com/Xuyuanp/nerdtree-git-plugin) Visual Git icons 
 
 [ctrlp](https://github.com/kien/ctrlp.vim) Fuzzy file, buffer, mru, tag, etc finder, type `:Ctrlp`
 
+##### Programing
 
-TODO add: under LANGUAGE
+[indent_python](https://github.com/vim-scripts/indentpython.vim) auto indend 
+
+[YouCompleteMe](https://github.com/Valloric/YouCompleteMe) Suggestions, auto-complete 
 
 ### Color background fond style
 
@@ -150,13 +156,6 @@ TODO add: under LANGUAGE
 + For enhanced syntax style for different languagles `C` `python` `markdown` `cmake` use
 
     `syntax on`
-
-### Info
-ALE:
-[!alt text](https://raw.githubusercontent.com/w0rp/ale/master/img/example.gif)
-<img src="img/example.gif?raw=true" alt="A linting example with the darkspectrum color scheme in GVim." title="A linting example with the darkspectrum color scheme in GVim.">
-
-....
 
 ## Authors
 * **Tine Bertoncelj** - *Initial work* - [GitHub](https://github.com/bertoncelj)
