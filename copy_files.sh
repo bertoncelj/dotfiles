@@ -1,12 +1,9 @@
 #! /usr/bin/env bash
-dir_vim="vim/.vim"
 
+path_vimrc_f="vim/.vimrc"
+path_tmux_f="tmux/.tmux.conf"
 
-vimrc_f="vim/.vimrc"
-tmux_f="tmux/.tmux.conf"
-
-files="$vimrc_f $tmux_f"
-
+files="$path_vimrc_f $path_tmux_f"
 
 echo "HOME : $HOME"
 for file in $files; do
@@ -14,10 +11,13 @@ for file in $files; do
 	
 	echo $name_f
 	if [ -f $HOME/$name_f ]; then
+
+        #first run make backup directory
 		if [ ! -d "$HOME/.backup_vim" ]; then
 			mkdir $HOME/.backup_vim
 		fi	
 			
+        #save backup file 
 		bak_file_loc=$HOME/.backup_vim/$name_f\.backup_$(date "+%Y%m%d%H%M%S")
 		echo " Backing up previous dot files settings: from $name_f to $bak_file_loc"
 		mv $HOME/$name_f $bak_file_loc
