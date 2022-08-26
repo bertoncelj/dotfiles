@@ -6,6 +6,7 @@ require('sitter')
 require('todo')
 require('eviline')
 require('tree')
+require('toggleterm').setup{}
 
 
 -- colorscheme

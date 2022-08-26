@@ -6,6 +6,8 @@ map('n', '<c-j>', '<c-w>j', opts)
 map('n', '<c-h>', '<c-w>h', opts)
 map('n', '<c-k>', '<c-w>k', opts)
 map('n', '<c-l>', '<c-w>l', opts)
+-- Close insert mode in terminal 
+map('t', '<ESC>', '<C-\\><C-n>', opts)
 
 -- Split navigation 
 map('n', '<C-J>', '<C-W><C-J>',opts)
@@ -15,12 +17,19 @@ map('n', '<C-Right>', '<C-w>>',opts)
 map('n', '<C-Up>', '<C-w>+',opts)
 map('n', '<C-Down>', '<C-w>-',opts)
 
+-- vim.api.nvim_set_keymap(  't'  ,  '<ESC>'  ,  '<C-\\><C-n>'  ,  {noremap = true}  )
+
+-- vim.api.nvim_input("<esc>")
+-- local opts_t = {noremap= true }
+-- map('i', '<Esc>', '<C-\\><C-n>', opts_t)
+
 local function nkeymap(key, map1)
   map('n', key, map1, opts)
 end
 
 -- Tree 
 nkeymap('<F3>', '<cmd>NvimTreeToggle<cr>')
+nkeymap('<F2>', '<cmd>vsplit term://bash<cr>')
 
 -- Telescope keymaps
 nkeymap('ff', '<cmd>Telescope find_files<cr>')

@@ -59,6 +59,8 @@ require('packer').startup(function()
         tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
 
+    -- toggle terminal
+    use {"akinsho/nvim-toggleterm.lua"}
 
 end)
 
